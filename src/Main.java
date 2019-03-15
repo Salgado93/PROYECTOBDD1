@@ -39,5 +39,17 @@ public class Main {
              base.insertarMaquinas(10,"MALA",8);
          } catch (Exception e) {
          }*/
+         AdministrarDBA base = new AdministrarDBA();
+         try {
+            System.out.println("Entro ");
+            base.insertarComercios(10, "Centro", 300.00, "Mayorista",10.00);
+            base.insertarMayoristas(10, "Centro", 300.00, "Mayorista", 10.00, 5, null);
+            System.out.println("Agregado");
+         } catch (Exception e) {
+             System.out.println("e = " + e);
+         }
+         
+         
+         
     }
 }

@@ -1,4 +1,6 @@
 
+
+import java.sql.Date;
 import javax.swing.JOptionPane;
 
 /*
@@ -33,29 +35,31 @@ public class Principal extends javax.swing.JFrame {
 
         jd_mantenimiento = new javax.swing.JDialog();
         jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        jb_crear = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jd_crear = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        tx_idcomercio = new javax.swing.JTextField();
+        tx_recaudacion = new javax.swing.JTextField();
+        tx_zona = new javax.swing.JTextField();
+        tx_cantidad_pago = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
+        cb_tipo_comercio = new javax.swing.JComboBox<>();
+        jb_agregarComercio = new javax.swing.JButton();
+        tx_porcentaje = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jdate_fecha = new com.toedter.calendar.JDateChooser();
+        jLabel37 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         tx_codigo_m = new javax.swing.JTextField();
-        tx_estado = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jb_agregarMaquina = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -159,10 +163,10 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Mantenimiento");
 
-        jButton4.setText("CREAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jb_crear.setText("CREAR");
+        jb_crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jb_crearActionPerformed(evt);
             }
         });
 
@@ -178,7 +182,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(116, 116, 116)
                 .addGroup(jd_mantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_crear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(100, Short.MAX_VALUE))
@@ -189,7 +193,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(jb_crear)
                 .addGap(32, 32, 32)
                 .addComponent(jButton5)
                 .addGap(37, 37, 37)
@@ -197,19 +201,35 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        jLabel3.setText("Id comercio");
+        jLabel3.setText("ID Comercio");
 
         jLabel4.setText("Zona");
 
-        jLabel5.setText("Cantidad de pago");
+        jLabel5.setText("Cantidad de Pago");
 
         jLabel6.setText("Recaudacion");
 
-        jLabel7.setText("Tipo de comercio");
+        jLabel7.setText("Tipo de Comercio");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayorista", "Minorista" }));
+        cb_tipo_comercio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayorista", "Minorista" }));
+        cb_tipo_comercio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_tipo_comercioItemStateChanged(evt);
+            }
+        });
 
-        jButton7.setText("Guardar");
+        jb_agregarComercio.setText("GUARDAR");
+        jb_agregarComercio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_agregarComercioActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Fecha");
+
+        jdate_fecha.setDateFormatString("dd/MM/yyyy");
+
+        jLabel37.setText("Porcentaje");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -221,17 +241,22 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                        .addComponent(jTextField1)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jb_agregarComercio, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tx_recaudacion, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(tx_zona, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(tx_cantidad_pago, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(tx_idcomercio)
+                    .addComponent(cb_tipo_comercio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tx_porcentaje)
+                    .addComponent(jdate_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(185, 185, 185))
         );
         jPanel2Layout.setVerticalGroup(
@@ -239,34 +264,40 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tx_idcomercio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tx_zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tx_cantidad_pago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_tipo_comercio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tx_recaudacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(28, 28, 28)
-                .addComponent(jButton7)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tx_porcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel37))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jdate_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jb_agregarComercio)
+                .addGap(54, 54, 54))
         );
 
-        jTabbedPane1.addTab("Comercio", jPanel2);
+        jTabbedPane1.addTab("Comercios", jPanel2);
 
         jLabel8.setText("Codigo de maquina");
-
-        jLabel9.setText("Estado");
 
         jb_agregarMaquina.setText("GUARDAR");
         jb_agregarMaquina.addActionListener(new java.awt.event.ActionListener() {
@@ -281,13 +312,10 @@ public class Principal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                .addComponent(jLabel8)
                 .addGap(132, 132, 132)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tx_estado, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(tx_codigo_m, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tx_codigo_m, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_agregarMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(179, Short.MAX_VALUE))
         );
@@ -298,13 +326,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tx_codigo_m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tx_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(42, 42, 42)
+                .addGap(77, 77, 77)
                 .addComponent(jb_agregarMaquina)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Maquinas", jPanel3);
@@ -397,7 +421,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(189, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Tecnico", jPanel5);
+        jTabbedPane1.addTab("Tecnicos", jPanel5);
 
         jLabel14.setText("Id pieza");
 
@@ -451,7 +475,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Pieza", jPanel6);
+        jTabbedPane1.addTab("Piezas", jPanel6);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1066,13 +1090,13 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox12ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jb_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearActionPerformed
         // TODO add your handling code here:
         jd_crear.setModal(true);
         jd_crear.pack();
         jd_crear.setLocationRelativeTo(this);
         jd_crear.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jb_crearActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -1086,14 +1110,62 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
              base.insertarMaquinas(Integer.parseInt(tx_codigo_m.getText()),
-                     tx_estado.getText(),0);
+                     "F",0);
              JOptionPane.showMessageDialog(null,"Maquina Agregada!");
          } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Maquina No Agregada", "Error", JOptionPane.ERROR_MESSAGE);
          }
-         tx_codigo_m.setText("");
-         tx_estado.setText("");
     }//GEN-LAST:event_jb_agregarMaquinaActionPerformed
+
+    private void jb_agregarComercioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarComercioActionPerformed
+        try {
+            if (cb_tipo_comercio.getSelectedIndex() == 0) {
+                base.insertarComercios(Integer.parseInt(tx_idcomercio.getText()), tx_zona.getText(), 
+                        Double.parseDouble(tx_cantidad_pago.getText()), 
+                        cb_tipo_comercio.getSelectedItem().toString(), 
+                        Double.parseDouble(tx_recaudacion.getText()));
+                base.insertarMayoristas(Integer.parseInt(tx_idcomercio.getText()), tx_zona.getText(), 
+                        Double.parseDouble(tx_cantidad_pago.getText()), 
+                        cb_tipo_comercio.getSelectedItem().toString(), 
+                        Double.parseDouble(tx_recaudacion.getText()),
+                        Double.parseDouble(tx_porcentaje.getText()),
+                        fecha = new Date(jdate_fecha.getDate().getTime()));
+                JOptionPane.showMessageDialog(null,"Comercio Mayorista Agregado!");
+            }
+            if(cb_tipo_comercio.getSelectedIndex() == 1){
+                base.insertarComercios(Integer.parseInt(tx_idcomercio.getText()), tx_zona.getText(), 
+                        Double.parseDouble(tx_cantidad_pago.getText()), 
+                        cb_tipo_comercio.getSelectedItem().toString(), 
+                        Double.parseDouble(tx_recaudacion.getText()));
+                base.insertarMinoristas(Integer.parseInt(tx_idcomercio.getText()), tx_zona.getText(), 
+                        Double.parseDouble(tx_cantidad_pago.getText()), 
+                        cb_tipo_comercio.getSelectedItem().toString(), 
+                        Double.parseDouble(tx_recaudacion.getText()));
+                JOptionPane.showMessageDialog(null,"Comercio Minorista Agregado!");
+            }
+            tx_idcomercio.setText("");
+            tx_zona.setText("");
+            tx_cantidad_pago.setText("");
+            tx_recaudacion.setText("");
+            tx_porcentaje.setText("");
+            jdate_fecha.setDate(null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Comercio No Agregado!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error En Agregar Comercio: " +e);
+        }
+    }//GEN-LAST:event_jb_agregarComercioActionPerformed
+
+    private void cb_tipo_comercioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipo_comercioItemStateChanged
+        // TODO add your handling code here:
+        if (cb_tipo_comercio.getSelectedIndex() == 1) {
+            jdate_fecha.setEnabled(false);
+            tx_porcentaje.setEnabled(false);
+        }else{
+            jdate_fecha.setEnabled(true);
+            tx_porcentaje.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_cb_tipo_comercioItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1131,6 +1203,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_tipo_comercio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1146,12 +1219,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox13;
@@ -1196,6 +1266,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel46;
@@ -1226,7 +1297,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1236,25 +1306,30 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JButton jb_agregarComercio;
     private javax.swing.JButton jb_agregarMaquina;
+    private javax.swing.JButton jb_crear;
     private javax.swing.JDialog jd_crear;
     private javax.swing.JDialog jd_eliminar;
     private javax.swing.JDialog jd_ensamblaje;
     private javax.swing.JDialog jd_mantenimiento;
     private javax.swing.JDialog jd_modificar;
+    private com.toedter.calendar.JDateChooser jdate_fecha;
+    private javax.swing.JTextField tx_cantidad_pago;
     private javax.swing.JTextField tx_codigo_m;
-    private javax.swing.JTextField tx_estado;
+    private javax.swing.JTextField tx_idcomercio;
+    private javax.swing.JTextField tx_porcentaje;
+    private javax.swing.JTextField tx_recaudacion;
+    private javax.swing.JTextField tx_zona;
     // End of variables declaration//GEN-END:variables
+    Date fecha;
 }

@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +25,14 @@ public class AdministrarDBA {
     public AdministrarDBA() {
     }
 
+    public Connection getCon() {
+        return con;
+    }
+
+    public void setCon(Connection con) {
+        this.con = con;
+    }
+    
     public ArrayList<Maquina> getListMaquinas() {
         return listMaquinas;
     }
@@ -46,17 +55,60 @@ public class AdministrarDBA {
         } catch (Exception e) {
             System.out.println("Error On Insert! " + e);
         }
-        try {
-            con.commit();
-        } catch (Exception e) {
-            System.out.println("Error En Commit! " +e);
-        }
-        try {
-            con.close();
-        } catch (Exception e) {
-        }
-        
     }
+    public void insertarComercios(int id,String zona,double cant_pago, String tipo, double recaudacion) throws SQLException{
+        try {
+            String query = "INSERT INTO COMERCIOS"
+                +"(id_comercio,zona,cant_pagar,tipo,recaudacion)"
+                +"VALUES(?,?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.setString(2, zona);
+            pst.setDouble(3, cant_pago);
+            pst.setString(4, tipo);
+            pst.setDouble(5, recaudacion);
+            pst.executeUpdate();
+            System.out.println("Insert Comercio Exitoso! ");
+        } catch (Exception e) {
+            System.out.println("Error On Insert! " + e);
+        }
+    }
+    public void insertarMayoristas(int id,String zona,double cant_pago, String tipo, double recaudacion, double porcentaje, Date fecha) throws SQLException{
+        try {
+            String query = "INSERT INTO MAYORISTAS"
+                +"(id_comercio,zona,cant_pagar,tipo,recaudacion,procentaje,fecha)"
+                +"VALUES(?,?,?,?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.setString(2, zona);
+            pst.setDouble(3, cant_pago);
+            pst.setString(4, tipo);
+            pst.setDouble(5, recaudacion);
+            pst.setDouble(6, porcentaje);
+            pst.setDate(7, fecha);
+            pst.executeUpdate();
+            System.out.println("Insert Mayorista Exitoso! ");
+        } catch (Exception e) {
+            System.out.println("Error On Insert! " + e);
+        }
+    }
+    public void insertarMinoristas(int id,String zona,double cant_pago, String tipo, double recaudacion) throws SQLException{
+        try {
+            String query = "INSERT INTO MINORISTAS"
+                +"(id_comercio,zona,cant_pagar,tipo,recaudacion)"
+                +"VALUES(?,?,?,?,?)";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, id);
+            pst.setString(2, zona);
+            pst.setDouble(3, cant_pago);
+            pst.setString(4, tipo);
+            pst.setDouble(5, recaudacion);
+            pst.executeUpdate();
+            System.out.println("Insert Minorista Exitoso! ");
+        } catch (Exception e) {
+            System.out.println("Error On Insert! " + e);
+        }
+    }  
     public void listarMaquinas(){
         try {
             Maquina maquina; 
@@ -73,10 +125,6 @@ public class AdministrarDBA {
             System.out.println("Listar Exitoso!");
         } catch (Exception e) {
             System.out.println("Error en Select! "+e);
-        }
-        try {
-            con.close();
-        } catch (Exception e) {
         }
     }
     
