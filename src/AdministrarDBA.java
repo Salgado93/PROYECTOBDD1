@@ -23,6 +23,7 @@ public class AdministrarDBA {
     Connection con = DBAConexión.getConnection();
     private ArrayList<Maquina> listMaquinas = new ArrayList();
     private ArrayList<Pieza> listaPiezas = new ArrayList();
+    private ArrayList<Comercio> listComercios = new ArrayList();
 
     public ArrayList<Pieza> getListaPiezas() {
         return listaPiezas;
@@ -32,7 +33,9 @@ public class AdministrarDBA {
         this.listaPiezas = listaPiezas;
     }
     
-
+    public ArrayList<Comercio> getListarComercio() {
+        return listComercios;
+    }
     public AdministrarDBA() {
     }
 
@@ -277,6 +280,23 @@ public class AdministrarDBA {
                 pieza = new Pieza(rs.getInt("id_pieza"),
                         rs.getInt("codigo_m"));
                 listaPiezas.add(pieza);
+            }
+            rs.close();
+            System.out.println("Listar Exitoso!");
+        } catch (Exception e) {
+            System.out.println("Error en Select! "+e);
+        }
+    }
+    public void listarComercios(){
+        try {
+            Comercio comercio; 
+             listComercios = new ArrayList();
+            Statement  st = con.createStatement();
+            String query = "SELECT id_comercio FROM COMERCIOS";
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                comercio = new Comercio(rs.getInt("id_comercio"));
+                listComercios.add(comercio);
             }
             rs.close();
             System.out.println("Listar Exitoso!");
