@@ -58,6 +58,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jdate_fecha = new com.toedter.calendar.JDateChooser();
         jLabel37 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jc_maquinasComercio = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         tx_codigo_m = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -87,6 +89,8 @@ public class Principal extends javax.swing.JFrame {
         jb_agregarProveedor = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
         tx_nombreProveedor = new javax.swing.JTextField();
+        jc_piezasProveedores = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
         jd_modificar = new javax.swing.JDialog();
         tab_modificar = new javax.swing.JTabbedPane();
         jPanel17 = new javax.swing.JPanel();
@@ -236,11 +240,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel37.setText("Porcentaje");
 
+        jLabel17.setText("Maquina");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -251,7 +257,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb_agregarComercio, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +268,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(tx_idcomercio)
                     .addComponent(cb_tipo_comercio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tx_porcentaje)
-                    .addComponent(jdate_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jdate_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jc_maquinasComercio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(185, 185, 185))
         );
         jPanel2Layout.setVerticalGroup(
@@ -295,9 +303,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9)
                     .addComponent(jdate_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jc_maquinasComercio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jb_agregarComercio)
-                .addGap(54, 54, 54))
+                .addGap(47, 47, 47))
         );
 
         tab_agregar.addTab("Comercios", jPanel2);
@@ -333,7 +345,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addGap(77, 77, 77)
                 .addComponent(jb_agregarMaquina)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         tab_agregar.addTab("Maquinas", jPanel3);
@@ -385,7 +397,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(cb_cod_maqu_tec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(100, 100, 100)
                 .addComponent(jb_agregarTecnico)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         tab_agregar.addTab("Tecnicos", jPanel5);
@@ -479,7 +491,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel40))
                 .addGap(40, 40, 40)
                 .addComponent(jb_agregarPiezas)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         tab_agregar.addTab("Piezas", jPanel6);
@@ -495,21 +507,26 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel38.setText("Nombre");
 
+        jLabel18.setText("PIEZA");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(44, 44, 44)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel18))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jb_agregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(tx_idproveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addComponent(tx_nombreProveedor))
-                    .addComponent(jb_agregarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tx_nombreProveedor)
+                        .addComponent(jc_piezasProveedores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(301, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -524,8 +541,12 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tx_idproveedor))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jc_piezasProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(36, 36, 36)
                 .addComponent(jb_agregarProveedor)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         tab_agregar.addTab("Proveedores", jPanel4);
@@ -1146,6 +1167,8 @@ public class Principal extends javax.swing.JFrame {
                     Double.parseDouble(tx_recaudacion.getText()), 
                     porcentaje, 
                     fecha);
+            base.insertDistribucion(Integer.parseInt(jc_maquinasComercio.getSelectedItem().toString()),
+                    Integer.parseInt(tx_idcomercio.getText()));
             JOptionPane.showMessageDialog(null, "Comercio Agregado!");
             /*if (cb_tipo_comercio.getSelectedIndex() == 0) {
                 base.insertarComercios(Integer.parseInt(tx_idcomercio.getText()), tx_zona.getText(),
@@ -1199,6 +1222,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             base.insertProveedor(Integer.parseInt(tx_idproveedor.getText()), tx_nombreProveedor.getText());
+            base.insertSuministra(Integer.parseInt(jc_piezasProveedores.getSelectedItem().toString()), 
+                    Integer.parseInt(tx_idproveedor.getText()));
             JOptionPane.showMessageDialog(null, "Proveedor Agregado!");
         } catch (Exception e) {
             System.out.println("Error Agregar! " + e);
@@ -1223,6 +1248,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void tab_agregarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tab_agregarStateChanged
         try {
+            if (tab_agregar.getSelectedIndex() == 0) {
+                base.listarMaquinas();
+                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+                jc_maquinasComercio.setModel(modelo);
+                for (Maquina m : base.getListMaquinas()) {
+                    modelo.addElement(m.getCodigo());
+                }
+                jc_maquinasComercio.setModel(modelo);
+            }
             if (tab_agregar.getSelectedIndex() == 2) {
                 base.listarMaquinas();
                 DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -1241,6 +1275,15 @@ public class Principal extends javax.swing.JFrame {
                     modelo.addElement(m.getCodigo());
                 }
                 jc_codigoMaquinaPiezas.setModel(modelo);
+            }
+            if (tab_agregar.getSelectedIndex() == 4) {
+                base.listarPiezas();
+                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+                jc_piezasProveedores.setModel(modelo);
+                for (Pieza pieza : base.getListaPiezas()) {
+                    modelo.addElement(pieza.getId_pieza());
+                }
+                jc_piezasProveedores.setModel(modelo);
             }
 
         } catch (Exception e) {
@@ -1422,6 +1465,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;
@@ -1481,7 +1526,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_crear;
     private javax.swing.JComboBox<String> jc_codigoMaquinaPiezas;
     private javax.swing.JComboBox<String> jc_codigoMaquinaPiezas1;
+    private javax.swing.JComboBox<String> jc_maquinasComercio;
     private javax.swing.JComboBox<String> jc_piezas1;
+    private javax.swing.JComboBox<String> jc_piezasProveedores;
     private javax.swing.JComboBox<String> jc_tipo_piezas;
     private javax.swing.JDialog jd_crear;
     private javax.swing.JDialog jd_eliminar;
