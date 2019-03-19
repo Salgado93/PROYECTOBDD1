@@ -57,6 +57,34 @@ public class AdministrarDBA {
             System.out.println("Error On Insert! " + e);
         }
     }*/
+    public void insertDistribucion(int codigo_m, int id_comercio){
+        try {
+            String query = "INSERT INTO DISTRIBUCION"
+                +"(codigo_m,id_comercio)"
+                +"VALUES(?,?)";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, codigo_m);
+            pst.setInt(2, id_comercio);
+            pst.execute();
+            System.out.println("Distribucion Agregada ");
+        } catch (Exception e) {
+            System.out.println("Error en Insertar Distribucion!" + e);
+        }
+    }
+    public void insertSuministra(int id_pieza, int id_proveedor){
+        try {
+            String query = "INSERT INTO SUMINISTRA"
+                +"(id_pieza,id_proveedor)"
+                +"VALUES(?,?)";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, id_pieza);
+            pst.setInt(2, id_proveedor);
+            pst.execute();
+            System.out.println("Suministra Agregado!");
+        } catch (Exception e) {
+            System.out.println("Error en Insertar Suministra!" + e);
+        }
+    }
     public void insertMaquina(int codigo_maquina,String estado_maquina, int cant_fallas){
         try {
             CallableStatement cst;

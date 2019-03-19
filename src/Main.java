@@ -59,6 +59,9 @@ public class Main {
          //base.insertComercio(8, "Centro", 0,"Mino", 0, 0, null);
          //base.insertTecnico(8, 3, 0);
          //base.insertProveedor(8, "Salgado");
+
+
+         
          
          
     }
