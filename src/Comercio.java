@@ -17,6 +17,9 @@ public class Comercio {
 
     public Comercio() {
     }
+     public Comercio(int id_comercio){
+        this.id_comercio = id_comercio;
+    }
 
     public Comercio(int id_comercio, String zona, double cant_pagar, String tipo, double recaudacion) {
         this.id_comercio = id_comercio;
