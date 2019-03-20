@@ -18,7 +18,7 @@ public class Mayorista extends Comercio {
     public Mayorista() {
     }
 
-    public Mayorista(double porcentaje, Date fecha, int id_comercio, String zona, double cant_pagar, String tipo, double recaudacion) {
+    public Mayorista(int id_comercio, String zona, float cant_pagar, String tipo, float recaudacion,float porcentaje, Date fecha) {
         super(id_comercio, zona, cant_pagar, tipo, recaudacion);
         this.porcentaje = porcentaje;
         this.fecha = fecha;

@@ -13,7 +13,7 @@ public class Minorista extends Comercio {
     public Minorista() {
     }
 
-    public Minorista(int id_comercio, String zona, double cant_pagar, String tipo, double recaudacion) {
+    public Minorista(int id_comercio, String zona, float cant_pagar, String tipo, float recaudacion) {
         super(id_comercio, zona, cant_pagar, tipo, recaudacion);
     }
 

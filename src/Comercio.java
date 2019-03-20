@@ -21,7 +21,7 @@ public class Comercio {
         this.id_comercio = id_comercio;
     }
 
-    public Comercio(int id_comercio, String zona, double cant_pagar, String tipo, double recaudacion) {
+    public Comercio(int id_comercio, String zona, float cant_pagar, String tipo, float recaudacion) {
         this.id_comercio = id_comercio;
         this.zona = zona;
         this.cant_pagar = cant_pagar;

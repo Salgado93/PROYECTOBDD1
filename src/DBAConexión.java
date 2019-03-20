@@ -17,7 +17,7 @@ public class DBAConexión {
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String myDB="jdbc:oracle:thin:@localhost:1521:orcl";
-            Connection con = DriverManager.getConnection(myDB,"system","Salgadito10");
+            Connection con = DriverManager.getConnection(myDB,"system","Contrasena1");
             System.out.println("Conexión Exitosa!");
             return con;
         }catch(SQLException ex)
